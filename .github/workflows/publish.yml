@@ -37,8 +37,7 @@ jobs:
           uv pip install twine
           echo "TWINE_USERNAME=__token__" >> $GITHUB_ENV
           echo "TWINE_PASSWORD=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
-          echo "TWINE_REPOSITORY_URL=https://upload.pypi.org/legacy/" >> $GITHUB_ENV
 
       - name: Publish to GitHub Packages
         run: |
-          uv run twine upload dist/* --repository-url https://upload.pypi.org/legacy/
+          uv run twine upload dist/* --repository-url https://pypi.pkg.github.com/${{ github.repository_owner }}/

@@ -1,5 +1,5 @@
 # Build stage with explicit platform specification
-FROM ghcr.io/astral-sh/uv:python3.12-alpine AS uv
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim AS uv
 
 # Install the project into /app
 WORKDIR /app
@@ -23,7 +23,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync --frozen --no-dev --no-editable
 
 # Final stage with explicit platform specification
-FROM python:3.12-alpine
+FROM python:3.12-slim-bookworm
 
 COPY --from=uv --chown=app:app /app/.venv /app/.venv
 
